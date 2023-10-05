@@ -1,5 +1,5 @@
 Clone o repositório:
-git clone https://github.com/Luko575/django-to-do-app.git
+git clone https://github.com/RafaelViktor29/to-do_list_fael.git
 
 Vá para o diretório:
   cd django-to-do-app
