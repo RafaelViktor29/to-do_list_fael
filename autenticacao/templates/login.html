@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'autenticacao/css/auth.css' %}">
+    <title>To-Do List Fael</title>
+  </head>
+  <body>
+    <div class="divContainer">
+      <div class="theApp">
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert {{message.tags}}">
+              {{message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <h1>Entrar</h1>
+          
+        <form action="{% url 'login_user' %}" method="POST">{% csrf_token %}
+          <div class="theTask my-2"><!-- Usuário -->
+            <div class="row d-flex align-items-center tarefa">
+
+              <div class="col d-flex justify-content-center pl-3">
+                <span>Usuário</span>
+              </div>
+              <div class="col-9 txt-tarefa">
+                <input type="text" class="textField bg-input" placeholder="nome usuário..." name="username">
+              </div>
+
+            </div>
+          </div><!-- EndUsuário -->
+          
+          
+          
+          
+          <div class="theTask my-2"><!-- Senha -->
+            <div class="row d-flex align-items-center tarefa">
+
+              <div class="col d-flex justify-content-center pl-3">
+                <span>Senha</span>
+              </div>
+              <div class="col-9 txt-tarefa">
+                <input type="password" class="textField bg-input" placeholder="senha..." name="senha">
+              </div>
+
+            </div>
+          </div><!-- EndSenha -->
+          
+          <div class="d-flex justify-content-between"><!-- Enviar -->
+            <button type="submit" class="btn btn-success">Entrar</button>
+            <a href="{% url 'register_user' %}" class="link-auth">Ainda não tem uma conta? registre-se</a>
+          </div><!-- EndEnviar -->
+
+        </form>
+          
+          
+        
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

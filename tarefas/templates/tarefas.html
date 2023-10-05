@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'tarefas/css/tarefas.css' %}">
+    <title>To-Do List Fael</title>
+  </head>
+
+  <body>
+    <div class="divContainer">
+      <div class="theApp">
+        <div class="d-flex align-items-end flex-column">
+          <div class="mb-auto p-2">
+            <a href="{% url 'logout_user' %}" class="btn btn-dark">Sair</a>
+          </div>
+        </div>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert {{message.tags}}">
+              {{message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <h1>To-Do List Faelッ</h1>
+
+        <div class="inputContents mb-3">
+          <form action="{% url 'add_tarefa' %}" method="POST" class="formAdd">{% csrf_token %}
+            <input type="text" class="textField" placeholder="Tarefa..." name="tarefa">
+            <button class="addTask fas fa-plus-square" type="submit"></button>
+          </form>
+        </div>
+
+        <div class="outputElements">
+          
+          {% for tarefa in tarefas %}
+            <div id="div_{{tarefa.id}}" class="theTask my-2 {% if tarefa.status == 'C' %}bg-tranparent{% endif %}"><!-- Tarefa -->
+              <div class="row d-flex align-items-center tarefa">
+
+                <div class="col d-flex justify-content-center pl-3">
+                  <input type="checkbox" class="checkbox" id="check_{{ tarefa.id }}" {% if tarefa.status == 'C' %}checked{% endif %}>
+                </div>
+                
+                <div class="col-9 txt-tarefa">
+                  <span id="span_{{tarefa.id}}" class="title {% if tarefa.status == 'C' %}marked{% endif %}">{{ tarefa }}</span>
+                </div>
+                
+                <div class="col">
+                  <a href="{% url 'editar_tarefa' tarefa.id %}" class="editBtn fas fa-pen"></a>
+                </div>
+
+                <div class="col">
+                  <a href="{% url 'excluir_tarefa' tarefa.id %}" class="trashBtn fas fa-trash"></a>
+                </div>
+
+              </div>
+            </div><!-- EndTarefa -->
+          {% endfor %}
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'tarefas/js/ajax.js' %}"></script>
+  </body>
+</html>
