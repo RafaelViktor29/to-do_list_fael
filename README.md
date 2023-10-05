@@ -2,7 +2,7 @@ Clone o repositório:
 git clone https://github.com/RafaelViktor29/to-do_list_fael.git
 
 Vá para o diretório:
-  cd django-to-do-app
+  cd to-do_list_fael
 
 Criando e ativando o ambiente virtual e instalando as dependencias:
   py -m venv venv
