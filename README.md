@@ -1,15 +1,15 @@
-###Clone o repositório:
+### Clone o repositório:
 git clone https://github.com/RafaelViktor29/to-do_list_fael.git
 
-###Vá para o diretório:
+### Vá para o diretório:
   cd to-do_list_fael
 
-###Criando e ativando o ambiente virtual(Windows) e instalando as dependencias:
+### Criando e ativando o ambiente virtual(Windows) e instalando as dependencias:
   py -m venv venv
   .\venv\Scripts\activate
   pip install Django Pillow
 
-###Rodar aplicação:
+### Rodar aplicação:
   py manage.py runserver(windows)
   Abra no navergador: http://127.0.0.1:8000/
 
